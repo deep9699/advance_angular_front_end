@@ -1,0 +1,100 @@
+<div class="container">
+
+  <h1>Sign Up Form</h1>
+  <hr>
+  <form [formGroup]="addEmp" class="example-form" (submit)="onSignUp()">
+
+
+      <mat-label>Employee Notification</mat-label><br><br>
+      <mat-radio-group formControlName="emp_notification" aria-label="Employee Gender">
+        <mat-radio-button value="mail">E-Mail</mat-radio-button>
+        <mat-radio-button value="phone">Mobile</mat-radio-button>
+      </mat-radio-group>
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" placeholder="Employee Email" formControlName="emp_email">
+      <mat-error *ngIf="addEmp.get('emp_email').hasError('email') && !addEmp.get('emp_email').pristine">
+          Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="addEmp.get('emp_email').hasError('required')&& !addEmp.get('emp_email').pristine">
+          Email Address is Required
+      </mat-error>
+      <mat-error *ngIf="addEmp.get('emp_email').status=='PENDING'">
+         <label style="color: blue;"> Checking... </label>
+      </mat-error>
+      <mat-error *ngIf="addEmp.get('emp_email').status=='VALID'">
+          <label style="color: green;">  Address Available </label>
+      </mat-error>
+      <mat-error *ngIf="addEmp.get('emp_email').hasError('invalidEmail')">
+           Email Address Already Taken...
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" placeholder="Employee Name" formControlName="emp_name">
+      <mat-error *ngIf="addEmp.get('emp_name').hasError('invalidName') && !addEmp.get('emp_name').pristine">
+          Please enter a valid Name
+      </mat-error>
+      <mat-error *ngIf="addEmp.get('emp_name').hasError('required')">
+          Name is Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="number" placeholder="Employee Phone" formControlName="emp_phone">
+      <mat-error *ngIf="addEmp.get('emp_phone').hasError('required')&& !addEmp.get('emp_phone').pristine">
+          Email Address is Required
+      </mat-error>
+      <mat-error *ngIf="addEmp.get('emp_phone').hasError('required')&& !addEmp.get('emp_phone').pristine">
+          Email Address is Required
+      </mat-error>
+
+    </mat-form-field>
+
+    <div formGroupName="cnfrmPassword">
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" placeholder="Employee Password" formControlName="emp_password">
+      <mat-error *ngIf="addEmp.get('cnfrmPassword').get('emp_password').hasError('required')">
+         Password is Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" placeholder="Employee Confirm Password" formControlName="emp_confirm_password">
+      <mat-error *ngIf="addEmp.get('cnfrmPassword').get('emp_confirm_password').hasError('required')">
+          Confirm Password is Required
+      </mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="addEmp.get('cnfrmPassword').hasError('diffrenetPassword')">
+        Password & Confirm Password must be Same
+    </mat-error>
+  </div>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Employee City</mat-label>
+      <mat-select formControlName="emp_city">
+        <mat-option value="Ahemdabad" >Ahemdabad</mat-option>
+        <mat-option value="Surat" >Surat</mat-option>
+        <mat-option value="Ghandhinagar" >Ghandhinagar</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+    <mat-label>Employee Gender</mat-label><br><br>
+    <mat-radio-group formControlName="emp_gender" aria-label="Employee Gender">
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+    </mat-radio-group>
+
+
+<br>
+<br>
+    <button [disabled]="!addEmp.valid" mat-raised-button type="submit"  color="primary">Sign Up</button>
+    &nbsp;&nbsp;
+    <button mat-raised-button (click)="onBack()" >Cancel</button>
+
+  </form>
+</div>

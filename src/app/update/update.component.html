@@ -1,0 +1,81 @@
+<div class="container">
+
+    <h1>Sign Up Form</h1>
+    <hr>
+    <form [formGroup]="updateEmp" class="example-form" (submit)="onUpdate()">
+
+
+        <mat-label>Employee Notification</mat-label><br><br>
+        <mat-radio-group formControlName="emp_notification" aria-label="Employee Gender">
+          <mat-radio-button value="mail">E-Mail</mat-radio-button>
+          <mat-radio-button value="phone">Mobile</mat-radio-button>
+        </mat-radio-group>
+
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" placeholder="Employee Email" formControlName="emp_email">
+        <mat-error *ngIf="updateEmp.get('emp_email').hasError('email') && !updateEmp.get('emp_email').pristine">
+            Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="updateEmp.get('emp_email').hasError('required')&& !updateEmp.get('emp_email').pristine">
+            Email Address is Required
+        </mat-error>
+        <mat-error *ngIf="updateEmp.get('emp_email').status=='PENDING'">
+           <label style="color: blue;"> Checking... </label>
+        </mat-error>
+        <mat-error *ngIf="updateEmp.get('emp_email').status=='VALID'">
+            <label style="color: green;">  Address Available </label>
+        </mat-error>
+        <mat-error *ngIf="updateEmp.get('emp_email').hasError('invalidEmail')">
+             Email Address Already Taken...
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" placeholder="Employee Name" formControlName="emp_name">
+        <mat-error *ngIf="updateEmp.get('emp_name').hasError('invalidName') && !updateEmp.get('emp_name').pristine">
+            Please enter a valid Name
+        </mat-error>
+        <mat-error *ngIf="updateEmp.get('emp_name').hasError('required')">
+            Name is Required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput type="number" placeholder="Employee Phone" formControlName="emp_phone">
+        <mat-error *ngIf="updateEmp.get('emp_phone').hasError('required')&& !updateEmp.get('emp_phone').pristine">
+            Email Address is Required
+        </mat-error>
+        <mat-error *ngIf="updateEmp.get('emp_phone').hasError('required')&& !updateEmp.get('emp_phone').pristine">
+            Email Address is Required
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Employee City</mat-label>
+        <mat-select formControlName="emp_city">
+          <mat-option value="Ahemdabad" >Ahemdabad</mat-option>
+          <mat-option value="Surat" >Surat</mat-option>
+          <mat-option value="Ghandhinagar" >Ghandhinagar</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+      <mat-label>Employee Gender</mat-label><br><br>
+      <mat-radio-group formControlName="emp_gender" aria-label="Employee Gender">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+
+
+  <br>
+  <br>
+      <button mat-raised-button type="submit"  color="primary">Update</button>
+      &nbsp;&nbsp;
+      <button mat-raised-button (click)="onBack()" >Cancel</button>
+
+    </form>
+  </div>
